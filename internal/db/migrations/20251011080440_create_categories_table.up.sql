@@ -1,9 +1,9 @@
-CREATE TABLE IF NOT EXISTS categories (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  user_id INTEGER,
-  CONSTRAINT fk_cat_user FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
-  CONSTRAINT unique_user_category UNIQUE(user_id, name)
+
+CREATE TABLE categories (
+    id SERIAL PRIMARY KEY,
+    name text not null, 
+    user_id INTEGER REFERENCES users(id) on delete CASCADE,
+    CONSTRAINT unique_user_category unique (user_id, name)
 );
 
-CREATE INDEX IF NOT EXISTS idx_categories_user_id ON categories(user_id);
+CREATE INDEX idx_categories_user_id ON categories(user_id);
